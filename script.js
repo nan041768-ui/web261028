@@ -1,68 +1,64 @@
-// document.write("외부 스크립트 방법"); 
-
-console.log("톤솔창에 나와야 하는 내용");
-
-var num = 10 + 20;
-console.log(num);
+//--------------------------------------
+// script.js : 내 영화 평점 통계(콘솔판)
+// 작성자 : 민윤희 (2651025)
 
 
-
-
-
-// let= 변수 선언하는 명령어
-let sum = 80 + 1234; //var 보다 let을 더 많이 사용함 // [실습예제도 let을 주로 사용]
-console.log(sum);
+const titles = ["스파이더맨: 브랜드 뉴 데이", "아이언맨", "어벤져스: 엔드게임", "어벤져스: 인피니티 워", "스파이더맨: 홈커밍"];
+const ratings = [8.2, 7.8, 8.2, 8.2, 7.3];
+const years = [2026, 2008, 2019, 2018, 2017];
 
 
 
-//--------------------텍스트 변수 -> 출력-----------------------
-let string1 = "Hello, world\n";
-let string2 = '시네마 웹사이트"Cinema Website"에 오신 것을 환영합니당~~';
-let string3 = '시네마 웹사이트\'Cinema Website\'에 오신 것을 환영합니당~~';
-console.log(string1, string2);
-
-
-
-// --------------구구단----------------
-let dan = 3;
-let gugu = 8;
-let string = `${dan} 곱하기 ${gugu}은/는 ${dan * gugu}입니다.`;
-// 변수 가져와서 출력하려면 "백틱"으로 묶기. (따옴표 아님!)
-console.log(string);
-
-
-
-
-// -------------배열--------------
-let studentScore = [80, 70, 90, 60];
-console.log(studentScore);
-console.log(studentScore[2]);
-
-
-
-
-// ---------교재 p.352----------
-let stdScore = {
-   koreanScore: 90,
-   englisgScore: 80,
-   mathScore: 100,
-   scienceScore: 100
-};
-
-console.log(stdScore);
-console.log(stdScore.koreanScore);
-
-
-
-
-// ======교재 p.357 아주 중요=====
-
-for (let i = 1; i <= 9; i++) {
-   for (let j = 1; j <= 9; j++) {
-      console.log(`${i} x ${j} = ${i * j}`);
-   }
-   console.log("\n");
+let sum = 0;
+for (let i = 0; i < ratings.length; i++) {
+   sum = sum + ratings[i];
 }
+console.log("합계:", sum);
+
+const average = sum / ratings.length;
+console.log("평균:", average);
+
+
+
+let max = ratings[0];
+let maxIndex = 0;
+
+let count=0;
+
+for (let i = 0; i < ratings.length; i++){
+   
+   if(ratings[i]>=8) count++;
+   if(ratings[i]>max){
+      max=ratings[i];
+      maxIndex=i;
+   }
+}
+
+for (let i = 0; i < ratings.length; i++){
+
+   let label;
+   if(ratings[i]>=8.5){
+      label="명작";
+   }
+   else if(ratings[i]>=7){
+      label="추천";
+   }
+   else{
+      label="보통";
+   }
+   console.log(titles[i] + " (" + years[i] + ") : " + ratings[i] + " " + label);
+}
+
+
+
+console.log("8점 이상:", count + "편");
+console.log("최고:", titles[maxIndex], max);
+
+
+
+const avgText = average.toFixed(1);
+const best = titles[maxIndex];
+alert(`내 영화 ${titles.length}편, 평균 ${avgText}점, 최고는 ${best}`);
 
 
 
